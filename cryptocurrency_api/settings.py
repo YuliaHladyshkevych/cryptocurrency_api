@@ -123,4 +123,8 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 CMC_PRO_API_URL = (
     "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest"
 )
+CMC_PRO_LOGO_API_URL = (
+    "https://pro-api.coinmarketcap.com/v1/cryptocurrency/info"
+)
+
 CMC_PRO_API_KEY = "61560770-1f19-42ea-b2c2-b66967524d64"

@@ -1,4 +1,5 @@
 import requests
+from django.core.files.base import ContentFile
 
 from cryptocurrency.models import Cryptocurrency
 from cryptocurrency_api import settings
@@ -27,23 +28,50 @@ def update_crypto_data():
 
     data = response.json()
     cryptocurrencies = []
+    ids = []
 
     for crypto_data in data["data"]:
+        id = crypto_data["id"]
+        ids.append(str(id))
+
+    logo_response = requests.get(
+        f"{settings.CMC_PRO_LOGO_API_URL}?id={','.join(ids)}",
+        headers=headers,
+    )
+    logo_response.raise_for_status()
+    logo_data = logo_response.json()
+
+    for crypto_data in data["data"]:
+        id = crypto_data["id"]
         name = crypto_data["name"]
         symbol = crypto_data["symbol"]
         current_price = crypto_data["quote"]["USD"]["price"]
         market_cap = crypto_data["quote"]["USD"]["market_cap"]
         rank = crypto_data["cmc_rank"]
+        logo_url = logo_data["data"][str(id)]["logo"]
+        logo_response = requests.get(logo_url)
+        logo_file = ContentFile(logo_response.content)
+        logo_file_name = f"{name}.png"
 
-        cryptocurrencies.append(
-            Cryptocurrency(
-                name=name,
-                symbol=symbol,
-                market_cap=market_cap,
-                rank=rank,
-                current_price=current_price,
-            )
+        # cryptocurrencies.append(
+        #     Cryptocurrency(
+        #         name=name,
+        #         symbol=symbol,
+        #         market_cap=market_cap,
+        #         rank=rank,
+        #         current_price=current_price,
+        #         image=logo_url,
+        #     )
+        # )
+        cryptocurrency = Cryptocurrency(
+            name=name,
+            symbol=symbol,
+            market_cap=market_cap,
+            rank=rank,
+            current_price=current_price,
         )
+        cryptocurrency.image.save(logo_file_name, logo_file, save=False)
+        cryptocurrencies.append(cryptocurrency)
 
     return cryptocurrencies
 
@@ -57,6 +85,7 @@ def save_cryptocurrencies(cryptocurrencies: list[Cryptocurrency]):
                 "market_cap": cryptocurrency.market_cap,
                 "rank": cryptocurrency.rank,
                 "current_price": cryptocurrency.current_price,
+                "image": cryptocurrency.image,
             },
         )
 
