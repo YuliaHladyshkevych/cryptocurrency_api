@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "crispy_bootstrap5",
+    "crispy_forms",
     "rest_framework",
     "cryptocurrency",
 ]
@@ -68,6 +70,8 @@ TEMPLATES = [
         },
     },
 ]
+
+CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 WSGI_APPLICATION = "cryptocurrency_api.wsgi.application"
 

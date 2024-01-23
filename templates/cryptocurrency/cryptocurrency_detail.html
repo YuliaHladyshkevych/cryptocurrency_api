@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+  <h1 class="my-4">
+    {% if cryptocurrency.image %}
+      <span><img src="{{ cryptocurrency.image.url }}" class="px-2"
+                 alt="{{ cryptocurrency.name }} Logo"
+                 width="65"></span>
+    {% endif %}
+    <span>{{ cryptocurrency.name }} Detail</span>
+  </h1>
+
+  <div class="card mb-4">
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">
+        <strong>Rank:</strong> {{ cryptocurrency.rank }}</li>
+      <li class="list-group-item">
+        <strong>Name:</strong> {{ cryptocurrency.name }}</li>
+      <li class="list-group-item">
+        <strong>Symbol:</strong> {{ cryptocurrency.symbol }}</li>
+      <li class="list-group-item"><strong>Current Price:</strong>
+        $ {{ cryptocurrency.current_price }}</li>
+      <li class="list-group-item"><strong>Market Capitalization:</strong>
+        $ {{ cryptocurrency.market_cap }}</li>
+    </ul>
+  </div>
+
+{% endblock %}

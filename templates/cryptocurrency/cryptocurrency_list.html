@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
   <h1>Crypto Market Insights</h1>
@@ -16,12 +17,21 @@
 
       <tbody id="myTable">
       {% for cryptocurrency in cryptocurrency_list %}
-        <tr>
+        <tr onclick="document.location = '{{ cryptocurrency.name }}';">
           <td class="align-middle">{{ cryptocurrency.rank }}</td>
           <td>
             <h5>
-              <span><img src="{{ cryptocurrency.image }}" class="px-2"
-                         width="50"></span>
+              {% if cryptocurrency.image %}
+                <span><img src="{{ cryptocurrency.image }}" class="px-2"
+                           alt="{{ cryptocurrency.name }} Logo"
+                           width="50"></span>
+              {% else %}
+
+                <span><img src="{% static 'logos/base_logo.png' %}"
+                           class="px-2"
+                           alt="{{ cryptocurrency.name }} Logo"
+                           width="50"></span>
+              {% endif %}
               <span
                   style="color: rgb(0, 35, 208);">{{ cryptocurrency.name }}</span>
               /
@@ -38,4 +48,3 @@
     </table>
   </div>
 {% endblock %}
-<tbody> 
