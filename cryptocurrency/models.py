@@ -46,6 +46,7 @@ class Cryptocurrency(models.Model):
 
     class Meta:
         ordering = ["rank"]
+        verbose_name_plural = "Cryptocurrencies"
 
 
 @receiver(pre_delete, sender=Cryptocurrency)
