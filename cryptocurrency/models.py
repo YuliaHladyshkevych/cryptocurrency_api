@@ -13,7 +13,7 @@ def cryptocurrency_logo_file_path(instance, filename):
     _, extension = os.path.splitext(filename)
     filename = f"{slugify(instance.symbol)}-{uuid.uuid4()}{extension}"
 
-    return os.path.join("logos/", filename)
+    return os.path.join("static/logos/", filename)
 
 
 class Cryptocurrency(models.Model):

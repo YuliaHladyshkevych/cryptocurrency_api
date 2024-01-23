@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Crypto Market Insights</h1>
+  <p>Welcome to Crypto Django API!</p>
+
+  <div id="app">
+    <table class="table table-hover">
+      <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col">Current Price</th>
+      </tr>
+      </thead>
+
+      <tbody id="myTable">
+      {% for cryptocurrency in cryptocurrency_list %}
+        <tr>
+          <td class="align-middle">{{ cryptocurrency.rank }}</td>
+          <td>
+            <h5>
+              <span><img src="{{ cryptocurrency.image }}" class="px-2"
+                         width="50"></span>
+              <span
+                  style="color: rgb(0, 35, 208);">{{ cryptocurrency.name }}</span>
+              /
+              <span
+                  style="color: rgb(85, 85, 85)">{{ cryptocurrency.symbol }}</span>
+            </h5>
+          </td>
+          <td class="align-middle">
+            <h5>$ {{ cryptocurrency.current_price }}</h5>
+          </td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}
+<tbody> 

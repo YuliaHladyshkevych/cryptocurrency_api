@@ -53,16 +53,6 @@ def update_crypto_data():
         logo_file = ContentFile(logo_response.content)
         logo_file_name = f"{name}.png"
 
-        # cryptocurrencies.append(
-        #     Cryptocurrency(
-        #         name=name,
-        #         symbol=symbol,
-        #         market_cap=market_cap,
-        #         rank=rank,
-        #         current_price=current_price,
-        #         image=logo_url,
-        #     )
-        # )
         cryptocurrency = Cryptocurrency(
             name=name,
             symbol=symbol,

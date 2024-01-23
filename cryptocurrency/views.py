@@ -3,7 +3,6 @@ from rest_framework.renderers import TemplateHTMLRenderer
 from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
 
-
 from cryptocurrency.models import Cryptocurrency
 from cryptocurrency.serializers import CryptocurrencyListSerializer
 
@@ -15,7 +14,8 @@ class CryptocurrencyListView(ListAPIView):
 
     def get(self, request):
         queryset = Cryptocurrency.objects.all()
-        return Response({"Cryptocurrencies": queryset})
+        serialized_data = self.serializer_class(queryset, many=True).data
+        return Response({"cryptocurrency_list": serialized_data})
 
 
 class CryptocurrencyRetrieveView(RetrieveAPIView):
