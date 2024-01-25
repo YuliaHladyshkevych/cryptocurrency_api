@@ -1,0 +1,24 @@
+[0;1;32m●[0m gunicorn.service - gunicorn daemon
+     Loaded: loaded (]8;;file://crypto/etc/systemd/system/gunicorn.service/etc/systemd/system/gunicorn.service]8;;; [0;1;32menabled[0m; preset: [0;1;32menabled[0m)
+     Active: [0;1;32mactive (running)[0m since Wed 2024-01-24 19:40:35 UTC; 2h 19min ago
+TriggeredBy: [0;1;32m●[0m gunicorn.socket
+   Main PID: 12076 (gunicorn)
+      Tasks: 4 (limit: 1101)
+     Memory: 140.6M
+        CPU: 5.238s
+     CGroup: /system.slice/gunicorn.service
+             ├─[0;38;5;245m12076 /home/crypto/cryptocurrency_api/venv/bin/python /home/crypto/cryptocurrency_api/venv/bin/gunicorn --access-logfile - --workers 3 --bind unix:/run/gunicorn.sock cryptocurrency_api.wsgi:application[0m
+             ├─[0;38;5;245m12077 /home/crypto/cryptocurrency_api/venv/bin/python /home/crypto/cryptocurrency_api/venv/bin/gunicorn --access-logfile - --workers 3 --bind unix:/run/gunicorn.sock cryptocurrency_api.wsgi:application[0m
+             ├─[0;38;5;245m12078 /home/crypto/cryptocurrency_api/venv/bin/python /home/crypto/cryptocurrency_api/venv/bin/gunicorn --access-logfile - --workers 3 --bind unix:/run/gunicorn.sock cryptocurrency_api.wsgi:application[0m
+             └─[0;38;5;245m12079 /home/crypto/cryptocurrency_api/venv/bin/python /home/crypto/cryptocurrency_api/venv/bin/gunicorn --access-logfile - --workers 3 --bind unix:/run/gunicorn.sock cryptocurrency_api.wsgi:application[0m
+
+Jan 24 21:54:01 crypto gunicorn[12079]: Not Found: /
+Jan 24 21:54:01 crypto gunicorn[12079]:  - - [24/Jan/2024:21:54:01 +0000] "GET / HTTP/1.0" 404 2188 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.5.1 Safari/605.1.15"
+Jan 24 21:56:01 crypto gunicorn[12078]: Not Found: /
+Jan 24 21:56:01 crypto gunicorn[12078]:  - - [24/Jan/2024:21:56:01 +0000] "GET / HTTP/1.0" 404 2188 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36"
+Jan 24 21:56:04 crypto gunicorn[12079]: Not Found: /
+Jan 24 21:56:04 crypto gunicorn[12079]:  - - [24/Jan/2024:21:56:04 +0000] "GET / HTTP/1.0" 404 2188 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36"
+Jan 24 21:56:07 crypto gunicorn[12078]: Not Found: /
+Jan 24 21:56:07 crypto gunicorn[12078]:  - - [24/Jan/2024:21:56:07 +0000] "GET / HTTP/1.0" 404 2188 "-" "-"
+Jan 24 22:00:13 crypto gunicorn[12078]: Not Found: /
+Jan 24 22:00:13 crypto gunicorn[12078]:  - - [24/Jan/2024:22:00:13 +0000] "GET / HTTP/1.1" 404 2183 "-" "curl/8.2.1"
