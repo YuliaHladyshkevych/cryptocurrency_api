@@ -23,4 +23,5 @@ urlpatterns = [
         "cryptocurrencies/",
         include("cryptocurrency.urls", namespace="cryptocurrency"),
     ),
+    path("api/", include("cryptocurrency.urls_api", namespace="api")),
 ]

@@ -1,8 +1,10 @@
 from django.shortcuts import get_object_or_404
 from rest_framework.generics import ListAPIView, RetrieveAPIView
+from rest_framework.mixins import ListModelMixin
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.renderers import TemplateHTMLRenderer
 from rest_framework.response import Response
+from rest_framework.viewsets import GenericViewSet
 
 from cryptocurrency.models import Cryptocurrency
 from cryptocurrency.serializers import CryptocurrencyListSerializer
@@ -12,6 +14,11 @@ class CryptocurrencyPagination(PageNumberPagination):
     page_size = 10
     page_size_query_param = "page_size"
     max_page_size = 100
+
+
+class CryptocurrencyViewSet(ListModelMixin, GenericViewSet):
+    serializer_class = CryptocurrencyListSerializer
+    queryset = Cryptocurrency.objects.all()
 
 
 class CryptocurrencyListView(ListAPIView):
